@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 4%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 53%;
+    --accent: 76 89% 73%;
+    --accent-foreground: 0 0% 4%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 100% / 0.1;
+    --input: 0 0% 100% / 0.1;
+    --ring: 76 89% 73%;
+    --radius: 0.625rem;
+
+    /* Custom design tokens */
+    --mist-black: #0A0A0A;
+    --mountain-cream: #F5E8D3;
+    --kimono-white: #FAFAFA;
+    --lime-accent: #D4F87A;
+    --sakura-pink: #FFB7C5;
+    --mouse-gray: #888888;
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-bg: rgba(255, 255, 255, 0.04);
+    --frost-dark: rgba(20, 20, 20, 0.5);
+
+    /* Font families */
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: var(--mist-black);
+    color: var(--kimono-white);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  /* Hide system cursor on desktop — custom cursor replaces it */
+  @media (hover: hover) {
+    body, a, button, [role="button"], input, textarea {
+      cursor: none;
+    }
+  }
+
+  /* Accessibility: respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  ::selection {
+    background-color: var(--lime-accent);
+    color: var(--mist-black);
+  }
+}
+
+@layer components {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-serif {
+    font-family: var(--font-serif);
+  }
+
+  .font-body {
+    font-family: var(--font-body);
+  }
+
+  .text-lime {
+    color: var(--lime-accent);
+  }
+
+  .bg-mist {
+    background-color: var(--mist-black);
+  }
+
+  .bg-glass {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+  }
+
+  .bg-frost {
+    background: var(--frost-dark);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--glass-border);
+  }
+
+  .hairline {
+    height: 1px;
+    background: var(--glass-border);
+  }
+
+  .small-caps {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  .nav-link {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--kimono-white);
+    position: relative;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--glass-border);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1), background 300ms;
+  }
+
+  .nav-link:hover::after {
+    transform: scaleX(1);
+    background: var(--lime-accent);
+  }
+
+  .editorial-serif {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: clamp(22px, 2.5vw, 32px);
+    letter-spacing: 0.01em;
+    line-height: 1.45;
+  }
+}
